@@ -1,10 +1,25 @@
 {% extends "base.html" %}
 {% block content%}
-<div class="row">
+{% load blog_extras %}
+<h2>list of all posts</h2>
+{%for post in posts%}
+  <div class="row">
+    <div class="col">
+      <h3>{{post.title}}</h3>
+      <small>By {{post.author|author_details:request.user}} on {{post.published_at|date:"M, d Y"}}</small>
+      <p>{{post.summary}}</p>
+      <p>
+        ({{post.content|wordcount}} words)
+        <a href="#">Read more</a>
+      </p>
+    </div>
+  </div>
+{% endfor %}
+<!-- <div class="row">
   <div class="col-xs-12 col-sm-10 col-md-6 bg-primary">col1</div>
   <div class="col-xs-12 col-sm-2 col-md-2 bg-warning">col2</div>
   <div class="col bg-danger">col3</div>
-</div>
+</div> -->
 <!--
 <h2>Index Template</h2>
 <!--Alerts--
