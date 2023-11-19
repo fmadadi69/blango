@@ -1,0 +1,6 @@
+<h3>{{title}}</h3>
+<ul>
+  {%for post in post_list %}
+    <li><a href="{% url 'blog:post_detail_view' post.slug %}">{{post.title}}</a></li>
+  {% endfor %}
+</ul>
