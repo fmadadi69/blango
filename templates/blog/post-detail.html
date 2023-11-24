@@ -1,26 +1,31 @@
 {% extends "base.html" %}
 {% load blog_extras %}
 {% block content %}
-<h1>{{post.title}}</h1>
-{% row %}
-  {% col %}
-    {% include "blog/post-byline.html" %}
-  {% endcol %}
-{% endrow %}
-{% row %}
-  {% endcol %}
-    {{post.content|safe}}
-  {% endcol %}
-{% endrow %}
-{% row %}
-  {% col %}
-    {% recent_posts %}
-  {% endcol %}
-{% endrow %}
-{% row %}
-  {% col %}
-    <a href="{% url 'blog:index_view' %}">Back</a>
-  {% endcol %}
-{% endrow %}
+  <h1>{{post.title}}</h1>
+  {% row %}
+    {% col %}
+      {% include "blog/post-byline.html" %}
+    {% endcol %}
+  {% endrow %}
+  {% row %}
+    {% endcol %}
+      {{post.content|safe}}
+    {% endcol %}
+  {% endrow %}
+  {% row %}
+    {% col %}
+      {% include "blog/post-comments.html"%}
+    {% endcol %}
+  {% endrow %}
+  {% row %}
+    {% col %}
+      {% recent_posts %}
+    {% endcol %}
+  {% endrow %}
+  {% row %}
+    {% col %}
+      <a href="{% url 'blog:index_view' %}">Back</a>
+    {% endcol %}
+  {% endrow %}
 
 {% endblock %}
