@@ -22,3 +22,4 @@ urlpatterns = [
     path('blog/', include("blog.urls"))
     # path('', blog.views.index),
 ]
+
