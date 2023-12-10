@@ -85,6 +85,47 @@ class Dev(Configuration):
     CRISPY_TEMPLATE_PACK = "bootstrap5"
     WSGI_APPLICATION = 'blango.wsgi.application'
 
+    LOGGING = {
+        "version" : 1,
+        "disable_existing_loggers": False,
+        "filters":{
+          "require_debug_false":{
+            "()":"django.utils.log.RequireDebugFalse",
+          },
+        },
+        "formatters":{
+          "verbose":{
+            "format":"{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "datefmt":"%Y-%m-%H",
+            "style": "{",
+          },
+        },
+        "handlers":{
+            "console":{
+              "class":"logging.StreamHandler",
+              "stream":"ext://sys.stdout",
+              "formatter":"verbose",
+            },
+            "mail_admins":{
+              "class":"django.utils.log.AdminEmailHandler",
+              "level":"ERROR",
+              "filters":["require_debug_false"],
+            },
+        },
+        "loggers":{
+          "django.request":{
+            "handlers":["mail_admins"],
+            "level":"ERROR",
+            "propagate":"True"
+          },
+        },
+
+        "root":{
+            "handlers":["console"],
+            "level":"DEBUG",
+        },
+    }
+
 
     # Database
     # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -140,6 +181,7 @@ class Dev(Configuration):
     # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+    ADMINS = values.SingleNestedTupleValue()
 
 
 class Prod(Dev):
