@@ -3,9 +3,10 @@ from django import template
 from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
 from blog.models import Post
-
+import logging
 
 register = template.Library()
+logger = logging.getLogger(__name__)
 
 # @register.filter(name= 'author_details')
 # def author_details(author, current_user=None):
@@ -77,4 +78,5 @@ def endcol():
 def recent_posts(context):
   post = context['post']
   posts = Post.objects.order_by('-published_at').exclude(pk = post.pk)[:5] 
+  logger.debug("Loaded %d posts for post %d ", len(posts), post.pk)
   return {"title":"Recent Posts", "post_list":posts}

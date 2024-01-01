@@ -3,11 +3,28 @@ from blog.forms import CommentForm
 from blog.models import Post
 from django.utils import timezone
 import logging
+from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_headers, vary_on_cookie
+from django.utils.cache import patch_cache_control
+
 
 logger = logging.getLogger(__name__)
 
+# def cache_key_func(request, *args, **kwargs):
+#   cache_key = f"user_{request.user.id}_{request.path}"
+#   return cache_key
+
+
 # Create your views here.
+
+# @cache_page(300)
+# @vary_on_headers("Cookie")
+# @vary_on_cookie
 def index(request):
+  # from django.http import HttpResponse
+  # patch_cache_control(request,private = True)
+  # logger.debug("Index function is called")
+  # return HttpResponse(str(request.user).encode("ascii"))
   posts = Post.objects.filter(published_at__lte=timezone.now())
   logger.debug("Got %d posts", len(posts))
   return render(request, "blog/index.html", {"posts":posts})

@@ -138,7 +138,15 @@ class Dev(Configuration):
     #     }
     # }
 
-
+    CACHES = {
+      "default" :{
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "unique-snowflake",
+        # "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
+        # "LOCATION": "127.0.0.1:11211",
+        "TIMEOUT" : "300",
+      }
+    }
     # Password validation
     # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
