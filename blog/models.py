@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 
+
 # Create your models here.
 class Tag(models.Model):
   value = models.TextField(max_length = 100)
@@ -38,3 +39,14 @@ class Post(models.Model):
 
     def __str__(self):
       return self.title
+
+
+class AuthorProfile(models.Model):
+  user = models.OneToOneField(
+    settings.AUTH_USER_MODEL, 
+    on_delete=models.CASCADE, 
+    related_name="profile")
+  bio = models.TextField(max_length=500)
+
+  def __str__(self):
+    return f"{self.__class__.__name__} object for {self.user}"

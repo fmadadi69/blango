@@ -1,4 +1,5 @@
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from blango_auth.models import User
 from django import template
 from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe

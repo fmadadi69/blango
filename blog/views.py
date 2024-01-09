@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from blog.forms import CommentForm
-from blog.models import Post
+from blog.models import Post, AuthorProfile
 from django.utils import timezone
 import logging
 from django.views.decorators.cache import cache_page
