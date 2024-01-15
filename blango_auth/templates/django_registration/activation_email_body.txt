@@ -1,0 +1,10 @@
+Hello Dear {{user}},
+
+Activate your account on Blango by clicking on the link bellow:
+
+{{scheme}}://{{request.get_host}}{% url 'django_registration_activate' activation_key %}
+
+Notice that your activation key is valid only for next {{expiration_days}} days.
+
+Thanks,
+The Blango Team

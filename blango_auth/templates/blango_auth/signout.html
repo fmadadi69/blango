@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load blog_extras %}
+{% block title %} Blango Logout {% endblock %}
+{% block content %}
+  {% row %}
+    {% col %}
+      <p>Logged out</p>
+      <p><a href="{% url 'login' %}">Log Out</a></p>
+      <p><a href="{% url 'blog:index_view' %}">Main Page</a></p>
+    {% endcol %}
+  {% endrow %}
+{% endblock %}

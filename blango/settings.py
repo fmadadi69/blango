@@ -39,6 +39,9 @@ class Dev(Configuration):
     CSRF_COOKIE_SAMESITE = 'None'
     SESSION_COOKIE_SAMESITE = 'None'
     AUTH_USER_MODEL = 'blango_auth.User'
+    # REGISTRATION_OPEN = False
+    ACCOUNT_ACTIVATION_DAYS = 7
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
     # Application definition
@@ -86,6 +89,9 @@ class Dev(Configuration):
             },
         },
     ]
+
+    # LOGIN_REDIRECT_URL = "blog:index_view"
+    LOGOUT_REDIRECT_URL = "signout"
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
     CRISPY_TEMPLATE_PACK = "bootstrap5"
     WSGI_APPLICATION = 'blango.wsgi.application'
