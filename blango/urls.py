@@ -31,6 +31,7 @@ urlpatterns = [
     path("accounts/signout/", blango_auth.views.signout, name="signout"),
     path("accounts/register/", RegistrationView.as_view(form_class = BlangoRegistrationForm), name="django_registration_register"),
     path("accounts/", include('django_registration.backends.activation.urls')),
+    path("accounts/", include("allauth.urls")),
 
 ]
 if settings.DEBUG :
